@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update Student
+{% endblock title %}
+
+{% block body %}
+
+
+<div class="form-wrapper">
+
+    <div class="form-header">
+        <h1>Update Student</h1>
+        <p>Update student details below</p>
+    </div>
+
+    <form action="/update_stud/{{student.id}}" method="POST" enctype="multipart/form-data" class="student-form">
+
+        <div class="form-grid">
+
+             <!-- Photo -->
+            <div class="form-group">
+                <label for="photo">Student Photo</label>
+                <input
+                    type="file"
+                    id="photo"
+                    name="photo"
+                    value="{{student.photo}}"
+                    accept="image/*"
+                >
+                {% if student.photo %}
+                <small>Current photo: {{ student.photo }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group"> 
+            <label for="id">Student ID</label> 
+            <input type="number" id="id" name="id" placeholder="Enter student ID" required value="{{student.id}}"> 
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter student name"
+                    value="{{student.name}}"
+                    required
+                >
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="Enter age"
+                    value="{{student.age}}"
+                    min="1"
+                    max="100"
+                    required
+                >
+            </div>
+
+            <!-- DOB -->
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value="{{student.dob}}"
+                    required
+                >
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email address"
+                    value="{{student.email}}"
+                    required
+                >
+            </div>
+
+            <!-- STD -->
+            <div class="form-group">
+                <label for="course">Course</label>
+
+                <select id="course" name="course" value="{{student.course}}" required>
+                    <option value="">Select Course</option>
+                    <option value="FSD" {% if student.course=="FSD"%}Selected{% endif %}>FSD</option>
+                    <option value="AI Native Cohort" {% if student.course=="AI Native Cohort"%}Selected{% endif %}>AI Native Cohort</option>
+                    <option value="Intern Batch" {% if student.course=="Intern Batch"%}Selected{% endif %}>Intern Batch</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <a href="/" class="cancel-btn">
+                Cancel
+            </a>
+
+            <button type="submit" class="submit-btn">
+                Update Student
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock body %}

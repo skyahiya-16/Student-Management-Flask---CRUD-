@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block body %}
+
+<div class="page-header">
+    <div>
+        <h1>Students</h1>
+        <p>Manage all student records</p>
+    </div>
+</div>
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Profile Picture</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>DOB</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in students %}
+            <tr>
+                <td> {{i.id}} </td>
+                <td> <img src="{{ url_for('static', filename='upload/'+ i.photo) }}"  alt="Student Photo" class="student-photo"></td>
+                <td> {{i.name}}</td>
+                <td> {{i.age}}</td>
+                <td> {{i.dob}} </td>
+                <td> {{i.email}} </td>
+                <td> {{i.course}} </td>
+                <td class="action-buttons"> 
+                <a href="/update_stud/{{i.id}}" class="edit-btn">Update</a>
+                <a href="/delete_stud/{{i.id}}" class="delete-btn" onclick="return confirm('Are you sure you want to delete this student?')"> Delete </a>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock body %}
